@@ -1,0 +1,63 @@
+openapi: 3.0.0
+info:
+  title: API Praktikum WSE #9
+  description: Dokumentasi API Integrasi REST Countries & OpenWeatherMap
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+
+paths:
+  /ping:
+    get:
+      summary: Test API
+      responses:
+        "200":
+          description: API aktif
+
+  /api/countries:
+    get:
+      summary: Ambil semua negara
+      responses:
+        "200":
+          description: Berhasil mengambil data negara
+
+  /api/countries/region/{region}:
+    get:
+      summary: Ambil negara berdasarkan region
+      parameters:
+        - name: region
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Data negara berdasarkan region
+
+  /api/countries/name/{name}:
+    get:
+      summary: Ambil negara berdasarkan nama
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Data detail negara
+
+  /api/weather:
+    get:
+      summary: Ambil data cuaca berdasarkan kota
+      parameters:
+        - name: city
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Data cuaca kota
+        "401":
+          description: API key tidak valid
